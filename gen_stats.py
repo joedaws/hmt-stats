@@ -32,16 +32,19 @@ for sle in range(70,72):
         T.reset_tree()
         T.grow_tree()
         # compute average
-        avg += (1/bN)*T.norm
+        avg += (1./sampN)*T.norm
         # save value
         vals.append(T.norm)
     
     # compute standard deviation
     stdval = np.std(vals)
+    print(avg)
+    print(sum(vals)/len(vals))
     
     # genereate histogram
     fig, ax = plt.subplots(1)
-    plt.hist(vals,bins=25,alpha=0.6,color='b')
+    plt.hist(vals,bins=30,alpha=0.6,color='b')
+    plt.axvline(sum(vals)/len(vals), color='k', linestyle='dashed', linewidth=2)
     ax.set_xlabel('Weighted Sparsity')
     ax.set_yticklabels([])
     title = "Histogram of Weighted Sparsity: s = %3d, N = %4d" % (sle,bN)

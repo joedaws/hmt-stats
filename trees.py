@@ -148,43 +148,6 @@ class sTree:
             # increment cl counter
             cl += 1
 
-    def get_k_tree_s():
-        """
-        set value of k tree s given the sparsity
-        level for the tree
-        """
-        # initialize KTS -- K_{tree}(s)
-        KTS = 0
-        # nn -- number of nodes
-        nn = self.s
-        # create bins to count nodes on each level
-        nb = np.zeros(self.max_depth)
-        
-        # create list of all available node nodes
-        node_list = []
-        for level in range(0,self.max_depth):
-            # set max number of nodes for this level
-            nb[level] = 2**level
-            # a list for nodes on this level
-            level_list = []
-            # iterate over all nodes on level n
-            for n in range(0,2**level):
-                level_list.append((level,n))
-            # append level_list into node list
-            node_list.append(level_list)
-
-        # iterate over s nodes
-        while nn >= 0:
-            # find deepest available index
-            deepest = max(min(node_list))
-            # place node on deepest level possible
-            KTS += 2**deepest[0]
-            # increment counter for nodes on this level
-            # decrement count of nodes
-            nn -= 1
-            # remove node index from list
-            node_list[deepest[0]].remove((deepest[0],deepest[1]))
-
     def reset_tree(self):
         """
         zero out the current nodes 
@@ -196,26 +159,3 @@ class sTree:
         self.norm = 0
 
         return
-
-    def print_tree(self):
-        """
-        prints a visualization of the tree
-        should be called after grow_tree
-        """
-        l = 14
-        end = 2**9
-        A = np.zeros((l,end))
-        # iterate through the nodes
-        for n in self.nodes:
-            # check to make sure node is in range
-            if n.idx[0] < l and n.idx[1] < end:
-                # make a change in the matrix A to show node
-                p = n.idx
-                A[p[0],p[1]] = 1
-
-        # display matrix
-        #plt.imshow(A)
-        #plt.show()
-
-        return A
-
