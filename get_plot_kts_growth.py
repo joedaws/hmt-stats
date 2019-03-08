@@ -8,7 +8,7 @@ from cal_kts import BiTree
 
 
 # calculate \Theta^2s for fixed N
-d = 11
+d = 12
 N = 2**d
 num = str(N)
 # load data from file
@@ -39,9 +39,7 @@ plt.plot(svals,meanvals,label='$\mathbb{E}[K(T_s)$]')
 plt.plot(svals,theta2s,label='$\Theta^2s$')
 plt.plot(svals,ksvals,label='$K_{\mathcal{T}}(s)$')
 # plot N
-plt.plot(svals,N*np.ones((len(svals),)),label='$N=2^{11}$')
-# plot some desired sparsity growth
-plt.plot(svals,11*svals**(2),label='$C(s)$')
+plt.plot(svals,N*np.ones((len(svals),)),label='$N=$'+num)
 
 # set axis scale
 ax.set_yscale('log')
@@ -51,7 +49,6 @@ plt.legend(loc=4)
 
 # set axis label
 plt.xlabel('$s$--number of non-zero coefficients')
-#plt.ylabel('$\Theta^2s$')
 plt.title('Comparsion of Sampling Complexities for $N=2^{11}$')
 
 # show the how plot
